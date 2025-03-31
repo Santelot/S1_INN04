@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook - Sesión 4: Taller Innovación 3D</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .header {
+            background-color: #2196F3; /* Blue accent color */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+         .header h2 {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .time-title {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .banner {
+            background-color: #2196F3; /* Blue accent color */
+            color: white;
+            padding: 12px 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .banner:hover {
+            background-color: #1976D2; /* Darker blue on hover */
+        }
+        .banner .title {
+            font-size: 1.3em;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            padding-top: 8px;
+            font-weight: normal;
+        }
+        .content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            border-radius: 0 0 5px 5px;
+            background-color: #f9f9f9;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .dialogue {
+            background-color: #e3f2fd; /* Light blue background for dialogue */
+            border: 1px solid #bbdefb; /* Lighter blue border */
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            text-align: left; /* Adjusted alignment */
+            font-style: normal; /* Removed italics for main dialogue */
+            position: relative;
+        }
+        .dialogue i { /* Style for instructions within dialogue */
+           display: block;
+           margin-top: 8px;
+           color: #555;
+           font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 8px 12px;
+            margin-left: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            text-align: left;
+        }
+         td:first-child {
+            font-weight: bold;
+             width: 40%; /* Adjust width as needed */
+         }
+        ul, ol {
+            margin-left: 20px;
+            padding-left: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+             color: #1976D2; /* Darker blue for emphasis */
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .big-beats-example { margin-top: 10px; padding: 10px; border-left: 3px solid #1976D2; background-color: #fff; }
+
+    </style>
+    <script>
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            // Base time is 40 minutes, all activities shown by default.
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            // Add logic here if shorter variations are needed in the future
+            /*
+            if (selectedTime === '35') {
+                // Example: Hide or shorten an activity
+            } else if (selectedTime === '30') {
+                 // Example: Hide or shorten multiple activities
+            }
+            */
+        }
+
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActivities(); // Call once on load
+             var contents = document.querySelectorAll('.content');
+             contents.forEach(function(content) {
+                 content.style.display = 'none';
+             });
+        });
+    </script>
+</head>
+<body>
+
+<div class="header">
+    <h1>Playbook - Taller: Del Diseño 3D a la Realidad: ¡Imprimiendo el Futuro! (1º Secundaria)</h1>
+    <h2>Sesión 4: ¡Impacto 3D y Lanzamiento Conceptual!</h2>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="40" selected>40 minutos</option>
+            <!-- <option value="35">35 minutos</option> -->
+            <!-- <option value="30">30 minutos</option> -->
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 40 minutos</h2>
+
+<!-- ------------------------------------------------- Espacio para De un Vistazo --------------------------------------------------------- -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('de_un_vistazo_s4')">
+        <div class="title">🎯 De un Vistazo y Preparación Previa (Sesión 4) 📋</div>
+        <div class="subtitle">Resumen rápido de la sesión 4 y lo que necesitas preparar.</div>
+    </div>
+    <div id="de_un_vistazo_s4" class="content">
+        <table>
+            <tr>
+                <td>
+                    <strong>Objetivos:</strong>
+                    <ul>
+                        <li>Recordar los T-Bars detallados creados en la sesión anterior.</li>
+                        <li><strong>Táctica (Big Beats):</strong> Visualizar y narrar la historia de impacto MÁXIMO del diseño 3D elegido (Tensión MAX, Acción MAX, Resolución MAX).</li>
+                        <li><strong>Táctica (Prototipado Conceptual 3D):</strong> Describir cómo se podría crear un prototipo simple en Tinkercad para probar/mostrar la idea.</li>
+                        <li><strong>Táctica (Like, Wish, Wonder):</strong> Presentar la historia de impacto y el plan de prototipado, y recibir/dar retroalimentación final.</li>
+                        <li>Cerrar el taller motivando para la fase de modelado e impresión 3D real.</li>
+                    </ul>
+                    <strong>Tácticas Principales:</strong> Big Beats (Adaptado: Historia de Impacto 3D), Prototipado Conceptual 3D, Like, Wish, Wonder (Cierre Épico 3D).<br><br>
+                    <strong>Entregable Clave:</strong> Historia de Impacto "Big Beats 3D" y Plan de Prototipado Conceptual 3D por equipo. Notas LWW recibidas.
+                </td>
+                <td>
+                    <strong>Materiales Específicos:</strong>
+                    <ul>
+                        <li>Proyector o pantalla interactiva.</li>
+                        <li>Presentación de diapositivas (Diapositivas 21-26 detalladas abajo - Nueva numeración y contenido).</li>
+                        <li>Acceso a tablero Miro (o similar) con los T-Bars de la Sesión 3 visibles, y espacio para Big Beats y Prototipado Conceptual, O rotafolios/papeles grandes.</li>
+                        <li>Marcadores o herramientas de escritura/dibujo digital.</li>
+                        <li>Notas adhesivas pequeñas (físicas o digitales) para LWW.</li>
+                        <li>Ejemplo "Casas Impresas 3D" para Big Beats y Prototipado Conceptual (Diapositivas 22 y 24).</li>
+                    </ul>
+                     <strong>Preparación Previa para ESTA Sesión:</strong>
+                    <ol>
+                        <li><strong>Presentación Lista:</strong> Tener listas las Diapositivas 21 a 26 (NUEVO CONTENIDO). Preparar los ejemplos de Big Beats y Prototipado Conceptual de las Casas 3D según tu documento original.</li>
+                        <li><strong>Espacio de Trabajo:</strong> Equipos deben tener acceso a sus T-Bars de la Sesión 3 y espacio para desarrollar Big Beats y el plan de Prototipado (Miro, papel grande).</li>
+                        <li><strong>Material Retro LWW:</strong> Notas adhesivas y Diapositiva 26 con instrucciones LWW.</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- ------------------------------------------------- Espacio para Actividades --------------------------------------------------------- -->
+
+<!-- Actividad 1 -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('repaso_conexion_s4')">
+        <div class="title">🔄 Actividad 1: Repaso y Conexión ⏰ Tiempo: 3 minutos</div>
+        <div class="subtitle">Recordar los T-Bars y conectar con las actividades finales de impacto y prototipado.</div>
+    </div>
+    <div id="repaso_conexion_s4" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (1.5 minutos):</strong> Repaso Sesión 3. Proyectar Diapositiva 21.</td>
+                <td class="dialogue">
+                    "¡Diseñadores 3D con propósito! ¡Bienvenidos a la sesión final de nuestro taller de ideación! En la sesión pasada, hicieron un trabajo increíble: seleccionaron su idea estrella y crearon T-Bars súper detallados. ¡Tienen los perfiles completos de sus diseños con alma!"
+                    <br><br>
+                    "Recuerden cómo conectaron su idea con una necesidad humana profunda y describieron cada aspecto. ¡Eso es fundamental!"
+                </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 2 (1.5 minutos):</strong> Introducción a Sesión 4.</td>
+                <td class="dialogue">
+                     "Hoy vamos a hacer dos cosas emocionantes para cerrar este ciclo de diseño:"
+                     <br><br>
+                    "<strong>Primero,</strong> ¡vamos a imaginar y contar la historia del <strong>IMPACTO MÁXIMO</strong> que tendrá su diseño en el futuro usando la táctica <strong>'Big Beats'</strong>! Pensaremos en grande, ¡como si nuestra idea cambiara el mundo!"
+                     <br><br>
+                     "<strong>Segundo,</strong> ¡planearemos cómo podríamos hacer un <strong>prototipo conceptual</strong> simple en <strong>Tinkercad</strong> para mostrar nuestra idea de forma rápida y visual! No vamos a construirlo hoy, pero sí planearemos cómo lo haríamos."
+                     <br><br>
+                     "¡Prepárense para visualizar el futuro y planear cómo mostrarlo!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 2 -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('big_beats_s4')">
+        <div class="title">💥 Actividad 2: Táctica: Big Beats - La Historia de Impacto 3D ⏰ Tiempo: 15 minutos</div>
+        <div class="subtitle">Visualizar y narrar la historia del impacto máximo del diseño 3D elegido.</div>
+    </div>
+    <div id="big_beats_s4" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (2 minutos):</strong> Introducir Big Beats. Proyectar Diapositiva 22 (Instrucciones).</td>
+                <td class="dialogue">
+                    "¡Es hora de la Táctica <strong>'Big Beats'</strong>! Vamos a contar la historia más <strong>ÉPICA</strong> del impacto de su diseño 3D. Olvídense de las limitaciones por un momento. Imaginen que su idea funciona a la perfección, a gran escala, y realmente cambia el mundo para bien."
+                    <br><br>
+                    "Vamos a describir 3 momentos clave de esta historia, ¡exagerando un poco para ver el máximo potencial!"
+                </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 2 (3 minutos):</strong> Explicar los 3 Momentos MAX.</td>
+                <td class="dialogue">
+                     "En equipo, describan (o dibujen) estos 3 momentos en su tablero Miro o papel:"
+                    <ol>
+                        <li><strong>Tensión MÁXIMA:</strong> ¿Cómo era el problema ODS que eligieron <strong>ANTES</strong> de su diseño, pero en su <strong>peor versión posible</strong>? ¡Imaginen el caos total, la situación más crítica! ¿Qué pasaba? ¿Quién sufría más?</li>
+                        <li><strong>Acción MÁXIMA:</strong> ¡Aquí entra su diseño 3D! ¿Cómo soluciona el problema de forma <strong>espectacular y a lo grande</strong>? ¿Cómo lo usa la gente en este futuro ideal? ¿Qué hace exactamente su diseño para cambiar las cosas radicalmente?</li>
+                        <li><strong>Resolución MÁXIMA:</strong> ¡El final feliz perfecto! ¿Cómo se ve el mundo <strong>transformado y maravilloso</strong> gracias a su diseño? ¿Cuál es el impacto total y positivo? ¿Qué cambió para siempre?</li>
+                    </ol>
+                </td>
+            </tr>
+             <tr>
+                 <td><strong>PASO 3 (8 minutos):</strong> Tiempo de Trabajo en Big Beats.</td>
+                <td class="dialogue">
+                    "Tienen unos 8 minutos para escribir o dibujar esta historia de impacto máximo en su tablero Miro o papel. ¡Piensen en grande! ¡Sean visuales y dramáticos! ¿Cómo era antes? ¿Qué hizo su diseño? ¿Cómo es ahora?"
+                     <i>(Circular y ayudarles a pensar en grande y a visualizar el impacto transformador. Animarles a exagerar la tensión y la resolución para capturar la esencia del "Big Beat". Asegurarse de que cubren los tres puntos: Tensión MAX, Acción MAX, Resolución MAX).</i>
+                </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 4 (2 minutos):</strong> Ejemplo Big Beats Casas 3D. Proyectar Diapositiva 23.</td>
+                <td class="dialogue">
+                    "Miren el ejemplo de las Casas 3D. ¡Contaron una historia épica!"
+                    <br>
+                    <div class="big-beats-example">
+                        *   <strong>Tensión MAX:</strong> "¡Crisis de Vivienda Global! ¡Millones sin hogar, ciudades desbordadas! Construcción lenta, cara, ¡desesperación total!" (Imagen impactante de crisis).
+                        *   <strong>Acción MAX:</strong> "¡Llega CasaYA 3D! ¡Impresoras gigantes imprimen casas EN HORAS! Diseños personalizados, materiales locales, ¡construcción rápida, asequible, sostenible!" (Imagen heroica de impresoras trabajando).
+                        *   <strong>Resolución MAX:</strong> "¡El Mundo Cambia! ¡Crisis DESAPARECE! Millones con hogares dignos. Ciudades sostenibles. ¡Un futuro de esperanza, igualdad y bienestar para TODOS!" (Imagen utópica de futuro brillante).
+                    </div>
+                    "¡Así de inspiradora debe ser su historia de impacto! Cuenten la suya."
+                     <br><br>
+                     <i>(Entregable Clave: Historia de Impacto "Big Beats 3D" (Tensión/Acción/Resolución MAX) por equipo).</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 3 -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('prototipado_conceptual_s4')">
+        <div class="title">🛠️ Actividad 3: Táctica: Prototipado Conceptual 3D ⏰ Tiempo: 10 minutos</div>
+        <div class="subtitle">Planificar cómo crear un prototipo simple en Tinkercad para mostrar la idea.</div>
+    </div>
+    <div id="prototipado_conceptual_s4" class="content">
+        <table>
+            <tr>
+                 <td><strong>PASO 1 (2 minutos):</strong> Introducir el Prototipado Conceptual. Proyectar Diapositiva 24 (Instrucciones).</td>
+                <td class="dialogue">
+                    "¡Genial esa historia de impacto! Ahora, pensemos rápido: si tuvieran que mostrar su idea <strong>MAÑANA MISMO</strong> a alguien importante usando solo <strong>Tinkercad</strong> (sin tener tiempo de imprimir algo complejo), ¿cómo harían un <strong>Prototipo Conceptual RÁPIDO</strong>?"
+                    <br><br>
+                     "La idea no es construirlo ahora, sino <strong>planear</strong> cómo lo haríamos para comunicar la esencia de nuestra solución de forma simple y visual en Tinkercad."
+                 </td>
+            </tr>
+             <tr>
+                 <td><strong>PASO 2 (6 minutos):</strong> Discusión en Equipo y Planificación.</td>
+                <td class="dialogue">
+                     "Discutan en equipo y anoten en su Miro/papel su plan rápido:"
+                    <ol>
+                        <li><strong>Modelo 3D Clave:</strong> ¿Qué parte o característica <strong>MÁS importante</strong> de su diseño modelarían en Tinkercad para que se entienda la idea principal? No todo el objeto, ¡solo lo esencial! ¿Qué formas básicas usarían?</li>
+                        <li><strong>Cómo Mostrarlo:</strong> ¿Cómo presentarían ese modelo de Tinkercad para explicar cómo funciona o cuál es su impacto?
+                            <ul>
+                                <li>¿Harían un <strong>video corto</strong> girando el modelo en Tinkercad?</li>
+                                <li>¿Tomarían <strong>fotos</strong> desde ángulos clave?</li>
+                                <li>¿Lo pondrían en una <strong>presentación simple</strong> con anotaciones?</li>
+                                <li>¿Cómo mostrarían que <strong>FUNCIONA</strong> (sin imprimirlo todo)? (Ej: animación simple, descripción paso a paso junto al modelo).</li>
+                            </ul>
+                        </li>
+                    </ol>
+                     "¡Anoten su plan rápido para el prototipo conceptual!"
+                     <i>(Ayudarles a pensar en cómo comunicar la idea usando Tinkercad de forma simple y visual, sin necesidad de una impresión física compleja en esta etapa. Enfocarse en la representación y comunicación de la idea central).</i>
+                 </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 3 (2 minutos):</strong> Ejemplo y Cierre.</td>
+                 <td class="dialogue">
+                    "Por ejemplo, para las casas 3D, quizás modelarían solo un módulo básico en Tinkercad (Modelo Clave) y harían un video corto mostrando cómo se puede apilar o personalizar (Cómo Mostrarlo)."
+                    <br><br>
+                     "¡Perfecto! Ya tienen un plan inicial para visualizar su idea en Tinkercad."
+                    <br><br>
+                     <i>(Entregable Clave: Plan de Prototipado Conceptual 3D (descripción breve de qué modelar y cómo mostrarlo) por equipo).</i>
+                 </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 4 -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('lww_s4')">
+        <div class="title">💬 Actividad 4: Táctica: Like, Wish, Wonder - Cierre Épico 3D ⏰ Tiempo: 10 minutos</div>
+        <div class="subtitle">Presentar historias de impacto y planes de prototipo, y recibir retroalimentación final.</div>
+    </div>
+    <div id="lww_s4" class="content">
+        <table>
+            <tr>
+                 <td><strong>PASO 1 (1 minuto):</strong> Introducir el Lanzamiento Final y LWW. Proyectar Diapositiva 25 (Instrucciones).</td>
+                <td class="dialogue">
+                    "¡Diseñadores 3D visionarios, llegó la hora del <strong>Lanzamiento Final</strong> de esta fase de ideación! Cada 'Estudio 3D' presentará brevemente (2-3 minutos) su visión del futuro:"
+                    <br>
+                    "Presentarán:"
+                    <ol>
+                         <li>Su increíble historia de <strong>Impacto Máximo (Big Beats)</strong>.</li>
+                        <li>Su plan inteligente para el <strong>Prototipo Conceptual 3D</strong> en Tinkercad.</li>
+                    </ol>
+                    "¡Inspírennos!"
+                </td>
+            </tr>
+             <tr>
+                 <td><strong>PASO 2 (1 minuto):</strong> Explicar Like, Wish, Wonder (LWW). Proyectar Diapositiva 26.</td>
+                <td class="dialogue">
+                    "Mientras los demás equipos presentan, el resto preparará su retroalimentación usando la técnica <strong>Like, Wish, Wonder</strong> en notas adhesivas (físicas o digitales):"
+                    <ul>
+                        <li>👍 <strong>Like (Me Gusta):</strong> ¿Qué es lo que <strong>más les gustó</strong> de este diseño 3D y su historia de impacto? Algo que realmente les haya impresionado o inspirado.</li>
+                        <li>🙏 <strong>Wish (Deseo):</strong> Si pudieran desear algo para el futuro de este diseño 3D, ¿qué sería? Un paso más allá, algo que les gustaría que pasara con esta idea en el mundo real.</li>
+                        <li>❓ <strong>Wonder (Me Pregunto):</strong> ¿Qué pregunta les queda sobre este diseño 3D? Algo que les gustaría seguir explorando o pensando en el futuro.</li>
+                    </ul>
+                    "Recuerden dar ideas constructivas. Al final de cada presentación, ¡entreguen sus notas LWW!"
+                 </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 3 (7 minutos):</strong> Presentaciones de Equipos y Feedback LWW.</td>
+                 <td class="dialogue">
+                    "¡Muy bien! ¿Qué 'Estudio 3D' quiere ser el primero en presentar su visión del futuro?"
+                     <br><br>
+                     <i>(Gestionar las presentaciones (2-3 equipos dependiendo del tiempo). Cada equipo presenta 2-3 minutos. Al final de cada presentación, los demás equipos entregan sus notas LWW. Mantener el ritmo).</i>
+                    <br><br>
+                     "¡Equipo 1, listos para presentar su visión del futuro 3D!"
+                      <i>(Repetir para los equipos seleccionados).</i>
+                 </td>
+            </tr>
+            <tr>
+                 <td><strong>PASO 4 (1 minuto):</strong> Cierre de la Actividad.</td>
+                <td class="dialogue">
+                     "¡Excelentes presentaciones e historias de impacto! Han recibido comentarios valiosos con el LWW que les servirán para los siguientes pasos."
+                     <br><br>
+                     <i>(Entregable Parcial: Historias Big Beats y Planes de Prototipado presentados. Notas LWW recibidas).</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 5 -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('cierre_epico_s4')">
+        <div class="title">🏆 Actividad 5: Cierre Épico: ¡Misión Cumplida, Futuro 3D en Marcha! ⏰ Tiempo: 2 minutos</div>
+        <div class="subtitle">Cerrar el taller motivando para la fase de modelado e impresión real.</div>
+    </div>
+    <div id="cierre_epico_s4" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (1.5 minutos):</strong> Felicitaciones y Próximos Pasos Reales. Proyectar Diapositiva 27.</td>
+                <td class="dialogue">
+                    "¡¡¡FELICITACIONES, ARQUITECTOS DEL FUTURO!!! ¡Han completado la receta de ideación! Tienen planes increíbles para sus diseños 3D con impacto. Han contado historias épicas, planeado cómo mostrar sus ideas... ¡Son verdaderos innovadores 3D!"
+                    <br><br>
+                     "¿Qué sigue ahora fuera de este taller de ideación? ¡La acción real! Usar su <strong>T-Bar final</strong>, su historia de <strong>Impacto (Big Beats)</strong> y su <strong>plan de prototipo conceptual</strong> como guía para <strong>modelar en Tinkercad</strong> y preparar sus diseños para la <strong>impresión 3D</strong>."
+                 </td>
+            </tr>
+             <tr>
+                 <td><strong>PASO 2 (0.5 minutos):</strong> Despedida y Motivación Final.</td>
+                <td class="dialogue">
+                     "¡Estoy muy orgulloso de todo lo que han logrado! Han demostrado creatividad, pensamiento crítico y corazón."
+                     <br><br>
+                    "¡Sigan diseñando y construyendo un mundo mejor con su creatividad 3D!"
+                    <br><br>
+                    "¡Taller de ideación completado! ¡Ahora, a imprimir el futuro!" 🎉🚀
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!-- ------------------------------------------------- Fin Espacio para Actividades --------------------------------------------------------- -->
+
+</div>
+
+</body>
+</html>
